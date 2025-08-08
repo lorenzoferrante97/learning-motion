@@ -1,4 +1,4 @@
-import Dropdown from '../components/actions/Dropdown';
+// start code
 
 export default function Home() {
   return (
