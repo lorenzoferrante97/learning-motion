@@ -281,7 +281,7 @@ main {
 /* base */
 
 @utility font-body-base-normal {
-  @apply font-body text-base leading-loose font-normal tracking-normal;
+  @apply font-body text-base leading-loose font-light tracking-normal;
 }
 @utility font-body-base-big {
   @apply font-body text-base leading-loose font-bold tracking-widest;
