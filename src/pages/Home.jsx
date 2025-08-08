@@ -41,7 +41,7 @@ export default function Home() {
       </div>
 
       {/* --- SEZIONE 1 ------------------------------------------------------ */}
-      <div className='row-grid gap-8 py-12'>
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
         <h2 className='font-h2 col-span-full'>Animazione base</h2>
         <div className='col-span-full flex flex-col gap-1'>
           <p className='text-base-content/75'>
@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* --- SEZIONE 2 ------------------------------------------------------ */}
 
-      <div className='row-grid gap-8 py-12'>
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
         <h2 className='font-h2 col-span-full'>Interazioni animate</h2>
 
         {/* - code example ------------ */}
