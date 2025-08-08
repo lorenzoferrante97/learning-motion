@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Space+Grotesk:wght@300..700&display=swap');
+
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: false;
+  root: ':root';
+  include:;
+  exclude:;
+  prefix: 'd-';
+  logs: true;
+}
+
+@plugin "daisyui/theme" {
+  name: 'motion';
+  default: true;
+  prefersdark: false;
+  color-scheme: 'dark';
+  --color-base-100: oklch(12% 0.042 264.695);
+  --color-base-200: oklch(20% 0.042 265.755);
+  --color-base-300: oklch(27% 0.041 260.031);
+  --color-base-content: oklch(92% 0.013 255.508);
+  --color-primary: oklch(39% 0.195 277.366);
+  --color-primary-content: oklch(78% 0.115 274.713);
+  --color-secondary: oklch(42% 0.199 265.638);
+  --color-secondary-content: oklch(80% 0.105 251.813);
+  --color-accent: oklch(67% 0.182 276.935);
+  --color-accent-content: oklch(25% 0.09 281.288);
+  --color-neutral: oklch(12% 0.042 264.695);
+  --color-neutral-content: oklch(70% 0.04 256.788);
+  --color-info: oklch(45% 0.085 224.283);
+  --color-info-content: oklch(86% 0.127 207.078);
+  --color-success: oklch(44% 0.119 151.328);
+  --color-success-content: oklch(87% 0.15 154.449);
+  --color-warning: oklch(47% 0.114 61.907);
+  --color-warning-content: oklch(90% 0.182 98.111);
+  --color-error: oklch(44% 0.177 26.899);
+  --color-error-content: oklch(80% 0.114 19.571);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* SECTION TAILWIND CUSTOM THEME ............................................... */
+
+@theme {
+  /* ANCHOR --- Breakpoints */
+  --breakpoint-sm: 30rem; /* 480px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 90rem; /* 1440px */
+
+  /* ANCHOR --- Typefaces */
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-custom: 'Racing Sans One', sans-serif;
+
+  /* ANCHOR --- Font size */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2rem;
+  --text-5xl: 2.25rem;
+  --text-6xl: 2.5rem;
+  --text-7xl: 3rem;
+  --text-8xl: 3.5rem;
+  --text-9xl: 4rem;
+  --text-10xl: 4.5rem;
+  --text-11xl: 5rem;
+  --text-12xl: 5.75rem;
+  --text-13xl: 7.125rem;
+  --text-14xl: 7.875rem;
+  --text-15xl: 8.875rem;
+
+  /* ANCHOR --- Line Height */
+  --leading-*: initial;
+  --leading-tight: 0.95;
+  --leading-default: 1;
+  --leading-normal: 1.25;
+  --leading-loose: 1.4;
+
+  /* ANCHOR --- Letter Spacing */
+  --tracking-*: initial;
+  --tracking-tighter: -0.008em;
+  --tracking-normal: 0em;
+  --tracking-widest: 0.008em;
+
+  /* ANCHOR --- Border Radius */
+  --radius-*: initial;
+  --radius-none: 0rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 4rem;
+  --radius-full: 900px;
+
+  /* ANCHOR --- Shadows */
+
+  --shadow-*: initial;
+  --shadow-sm: 0 4px 12px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 8px 24px 0px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 16px 36px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 24px 48px -4px rgb(0 0 0 / 0.04);
+  --shadow-2xl: 0 32px 56px -4px rgb(0 0 0 / 0.08);
+
+  /* ANCHOR --- Inset Shadows */
+  --inset-shadow-*: initial;
+
+  /* ANCHOR --- Drop Shadows */
+  --drop-shadow-*: initial;
+
+  /* ANCHOR --- Spacing */
+
+  --spacing-*: initial;
+  --spacing-0: 0rem;
+  /* --spacing-px: 1px; 1px */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  /* --spacing-3: 0.75rem; 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  /* --spacing-6: 1.5rem; 24px */
+  /* --spacing-7: 1.75rem; 28px */
+  --spacing-8: 2rem; /* 32px */
+  /* --spacing-9: 2.25rem; 36px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-12: 3rem; /* 48px */
+  --spacing-14: 3.5rem; /* 56px */
+  /* --spacing-16: 4rem; 64px */
+  --spacing-20: 5rem; /* 80px */
+  --spacing-24: 6rem; /* 96px */
+  /* --spacing-28: 7rem; 112px */
+  --spacing-36: 9rem; /* 144px */
+  /* --spacing-44: 11rem; 176px */
+  --spacing-52: 13rem; /* 208px */
+  /* --spacing-60: 15rem; 240px */
+
+  /* ANCHOR --- Animations */
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-spin: spin 1s linear infinite;
+  --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-bounce: bounce 1s infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+/* ANCHOR CLASSES */
+
+#root {
+  max-width: 100vw;
+  width: 100%;
+  background-color: var(--color-base-100);
+}
+
+/* body {
+  background-color: var(--color-background);
+} */
+
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+/* ANCHOR UTILITIES */
+
+/* ANCHOR FONTS */
+
+/* --- Display */
+
+@utility font-display-1 {
+  @apply lg:text-10xl font-heading text-8xl leading-none font-normal md:text-9xl;
+}
+@utility font-display-2 {
+  @apply font-heading text-7xl leading-none font-normal md:text-8xl lg:text-9xl;
+}
+@utility font-display-3 {
+  @apply font-heading text-6xl leading-none font-normal md:text-7xl lg:text-8xl;
+}
+
+/* --- Headings */
+
+@utility font-h1 {
+  @apply font-heading text-5xl leading-normal font-bold md:text-6xl lg:text-7xl;
+}
+@utility font-h2 {
+  @apply font-heading text-4xl leading-normal font-bold md:text-5xl lg:text-6xl;
+}
+@utility font-h3 {
+  @apply font-heading text-2xl leading-normal font-semibold md:text-3xl lg:text-4xl;
+}
+@utility font-h4 {
+  @apply font-heading text-xl leading-normal font-semibold md:text-2xl lg:text-3xl;
+}
+@utility font-h5 {
+  @apply font-heading text-lg leading-normal font-semibold md:text-xl lg:text-2xl;
+}
+@utility font-h6 {
+  @apply font-heading text-lg leading-normal font-bold tracking-widest lg:text-xl;
+}
+
+/* --- Body */
+
+/* l */
+
+@utility font-body-l-small {
+  @apply font-body text-2xl leading-loose font-light tracking-normal;
+}
+@utility font-body-l-normal {
+  @apply font-body text-2xl leading-loose font-medium tracking-normal;
+}
+@utility font-body-l-big {
+  @apply font-body text-2xl leading-loose font-bold tracking-widest;
+}
+
+/* m */
+
+@utility font-body-m-small {
+  @apply font-body text-lg leading-loose font-light tracking-normal;
+}
+@utility font-body-m-normal {
+  @apply font-body text-lg leading-loose font-normal tracking-normal;
+}
+@utility font-body-m-big {
+  @apply font-body text-lg leading-loose font-bold -tracking-widest;
+}
+
+/* base */
+
+@utility font-body-base-normal {
+  @apply font-body text-base leading-loose font-normal tracking-normal;
+}
+@utility font-body-base-big {
+  @apply font-body text-base leading-loose font-bold tracking-widest;
+}
+
+/* s */
+
+@utility font-body-s-normal {
+  @apply font-body text-sm leading-loose font-normal tracking-normal;
+}
+@utility font-body-s-big {
+  @apply font-body text-sm leading-loose font-bold tracking-widest;
+}
+
+/* ANCHOR Containers */
+
+@utility container-full {
+  @apply relative flex w-full flex-col items-stretch;
+}
+
+@utility container-responsive {
+  @apply relative mx-auto flex w-full flex-col items-stretch lg:max-w-[96%] xl:w-[92%] xl:max-w-[1440px];
+}
+
+@utility container-fixed {
+  @apply relative mx-auto flex w-[96%] flex-col items-stretch xl:w-[92%] xl:max-w-[1440px];
+}
+
+/* ANCHOR Rows */
+
+@utility row-flex {
+  @apply flex flex-col items-stretch;
+}
+
+@utility row-flex-responsive {
+  @apply flex flex-col items-stretch md:flex-row md:flex-wrap;
+}
+
+@utility row-grid {
+  @apply grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12;
+}
+
+/* ANCHOR Perfect Center */
+
+@utility perfect-center {
+  @apply flex items-center justify-center;
+}
+
+/* ANCHOR Image Responsive */
+
+@utility image-responsive {
+  @apply size-full object-cover;
+}
+
+/* ANCHOR Padding Section */
+
+@utility p-section {
+  @apply p-2 md:p-5 xl:p-8;
+}
+
+/* ANCHOR Focus style */
+
+@utility focus-state {
+  @apply focus:outline-2 focus:outline-offset-4 focus:outline-black;
+}
+
+/* ANCHOR Transition - standard */
+
+@utility transition-base {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* --- RANGE COMPONENT CUSTOM STYLES ---------------------------------------------- */
+
+/* input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+} */
+
+/* TRACK - barra di sfondo */
+/* @utility range-track {
+  &::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--color-primary-solid) 0%,
+      var(--color-primary-solid) calc(var(--range-fill, 0) * 100%),
+      var(--color-background-alt-2) calc(var(--range-fill, 0) * 100%)
+    );
+    height: 0.5rem;
+    border-radius: 9999px;
+  }
+  &::-moz-range-track {
+    background: var(--color-background-alt-2);
+    height: 0.5rem;
+    border-radius: 9999px;
+  }
+  &::-moz-range-progress {
+    background: var(--color-primary-solid);
+    height: 0.5rem;
+  }
+} */
+
+/* THUMB - pallino trascinabile */
+/* @utility range-thumb {
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--color-primary-solid);
+    border-radius: 9999px;
+    cursor: pointer;
+    margin-top: calc(1.25rem / -4);
+    transition:
+      background 0.2s,
+      transform 0.1s;
+  }
+  &::-moz-range-thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--color-primary-solid);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      transform 0.1s;
+  }
+} */
+
+/* HOVER & FOCUS STATES per il thumb */
+/* @utility range-thumb-hover {
+  &::-webkit-slider-thumb:hover {
+    background: var(--color-primary-solid);
+    transform: scale(1.2);
+  }
+  &::-moz-range-thumb:hover {
+    background: var(--color-primary-solid);
+    transform: scale(1.2);
+  }
+}
+
+@utility range-thumb-focus {
+  &::-webkit-slider-thumb:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--color-primary-solid);
+  }
+  &::-moz-range-thumb:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--color-primary-solid);
+  }
+} */
