@@ -1,10 +1,11 @@
 // start code
 
-import { ArrowDownIcon } from '@phosphor-icons/react';
-import { motion } from 'motion/react';
+import { ArrowDownIcon, CaretRightIcon } from '@phosphor-icons/react';
+import { easeIn, easeInOut, easeOut, motion } from 'motion/react';
 import Accordion from '../components/dataDisplay/Accordion';
 import Collapse from '../components/dataDisplay/Collapse';
 import { useState } from 'react';
+import Carousel from '../components/dataDisplay/Carousel';
 
 export default function Home() {
   const [isPropagationVisible, setIsPropagationVisible] = useState(false);
@@ -289,6 +290,111 @@ export default function Home() {
                 name='variants-accordion'>
                 proprietà di transition per attivare le animazioni dei children
                 in sequenza, con un delay time
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+      {/* --- SEZIONE 4 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        {/* prettier-ignore */}
+        <h2 className='font-h2 col-span-full'>
+          Transition <span className='bg-primary text-primary-content rounded-full aspect-square size-fit perfect-center inline-flex p-1 relative top-[-4px]'><CaretRightIcon className='inline' weight='bold' size={12} /></span> Ease
+        </h2>
+        {/* prettier-ignore */}
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            Ease regola l'andamento della velocità dell'animazione. I più
+            comuni:
+          </p>
+          <div className='col-span-full'>
+            <Carousel className='h-fit w-full space-x-2 p-2 md:w-[320px]'>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  easeIn
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  easeOut
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  easeInOut
+                </span>
+              </div>
+            </Carousel>
+          </div>
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`<motion.div
+    animate={{ x: 80 }}
+    transition={{ duration: 5, ease: 'easeInOut'}}
+  />`}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-2 rounded-lg p-12 md:col-span-1'>
+            <div className='grid w-full grid-cols-2'>
+              <span className='text-primary-content w-fit self-center'>
+                easeIn
+              </span>
+              <motion.div
+                className='bg-primary-content size-5 rounded-full'
+                animate={{ x: 80 }}
+                transition={{ duration: 5, ease: easeIn }}
+              />
+            </div>
+            <div className='grid w-full grid-cols-2'>
+              <span className='text-secondary-content w-fit self-center'>
+                easeOut
+              </span>
+              <motion.div
+                className='bg-secondary-content size-5 rounded-full'
+                animate={{ x: 80 }}
+                transition={{ duration: 5, ease: easeOut }}
+              />
+            </div>
+            <div className='grid w-full grid-cols-2'>
+              <span className='text-accent-content w-fit self-center'>
+                easeInOut
+              </span>
+              <motion.div
+                className='bg-accent-content size-5 rounded-full'
+                animate={{ x: 80 }}
+                transition={{ duration: 5, ease: easeInOut }}
+              />
+            </div>
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='EaseIn'
+                className='font-body-base-big'
+                name='ease-accordion'
+                defaultChecked>
+                L'animazione inizia lenta e accellera al termine. Adatta per
+                elementi in uscita.
+              </Collapse>
+              <Collapse
+                title='EaseOut'
+                className='font-body-base-big'
+                name='ease-accordion'>
+                L'animazione inizia accellerando e rallenta al termine. Adatta
+                per elementi in entrata.
+              </Collapse>
+              <Collapse
+                title='EaseInOut'
+                className='font-body-base-big'
+                name='ease-accordion'>
+                L'animazione inizia lenta, accellera alla sua metà, e rallenta
+                al suo termine. Adatta per animazioni continue (loop, cicli,
+                cambi colore...)
               </Collapse>
             </Accordion>
           </div>
