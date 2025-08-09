@@ -240,7 +240,7 @@ export default function Home() {
             </pre>
           </div>
           {/* - esempio visivo ---------- */}
-          <div className='perfect-center col-span-full gap-2 rounded-lg p-12 md:col-span-1'>
+          <div className='perfect-center col-span-full gap-2 rounded-lg p-12 max-md:flex-col md:col-span-1'>
             <motion.div
               className='bg-accent font-body-m-big text-accent-content flex cursor-pointer rounded-full px-4 py-2'
               onClick={() => setIsPropagationVisible(!isPropagationVisible)}
@@ -271,6 +271,26 @@ export default function Home() {
                 </motion.li>
               </motion.ul>
             )}
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='prop variants'
+                className='font-body-base-big'
+                name='variants-accordion'
+                defaultChecked>
+                prop per passare l'oggetto di states di animazioni (hidden,
+                visible...)
+              </Collapse>
+              <Collapse
+                title='staggerChildren'
+                className='font-body-base-big'
+                name='variants-accordion'>
+                proprietà di transition per attivare le animazioni dei children
+                in sequenza, con un delay time
+              </Collapse>
+            </Accordion>
           </div>
         </div>
       </div>
