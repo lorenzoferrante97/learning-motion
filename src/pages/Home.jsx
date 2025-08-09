@@ -295,8 +295,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* --- SEZIONE 4 ------------------------------------------------------ */}
 
+      {/* --- SEZIONE 4 ------------------------------------------------------ */}
       <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
         {/* prettier-ignore */}
         <h2 className='font-h2 col-span-full'>
@@ -395,6 +395,104 @@ export default function Home() {
                 L'animazione inizia lenta, accellera alla sua metà, e rallenta
                 al suo termine. Adatta per animazioni continue (loop, cicli,
                 cambi colore...)
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 5 ------------------------------------------------------ */}
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        {/* prettier-ignore */}
+        <h2 className='font-h2 col-span-full'>
+          Transition <span className='bg-primary text-primary-content rounded-full aspect-square size-fit perfect-center inline-flex p-1 relative top-[-4px]'><CaretRightIcon className='inline' weight='bold' size={12} /></span> Type
+        </h2>
+        {/* prettier-ignore */}
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            il Type definisce il tipo di animazione, più nello specifico il
+            modello matematico che utilizzerà, e quindi come si comporterà.
+          </p>
+          <div className='col-span-full'>
+            <Carousel className='h-fit w-full space-x-2 p-2 md:w-[320px]'>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  tween (default)
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  spring
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                  inertia
+                </span>
+              </div>
+            </Carousel>
+          </div>
+          {/* - spring ----------- */}
+          <div className='col-span-full grid grid-cols-2 gap-4'>
+            <h3 className='font-h3 col-span-full'>Spring</h3>
+            <p className='text-base-content/75 col-span-full'>
+              Simula il movimento di una molla, quindi utilizzato soprattutto
+              per animazioni con effetto rimbalzo naturale
+            </p>
+            <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+              <pre>
+                <code>{`<motion.div
+    animate={{ x: 80 }}
+    transition={{
+      duration: 5,
+      type: 'spring',
+      stiffness: 120,
+      damping: 20,
+      mass: 4,
+      }}
+  />`}</code>
+              </pre>
+            </div>
+            {/* - esempio visivo ---------- */}
+            <div className='col-span-full flex flex-col justify-center gap-2 rounded-lg p-12 md:col-span-1'>
+              <motion.div
+                className='bg-primary-content size-10 rounded-full'
+                animate={{ x: 200 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 120,
+                  damping: 20,
+                  mass: 4,
+                }}
+              />
+            </div>
+          </div>
+
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='stiffness [ 100-500 (default = 100) ]'
+                className='font-body-base-big'
+                name='transition-type-accordion'
+                defaultChecked>
+                stiffness regola la rigidità della "molla". Più alto è il
+                valore, più il movimento sarà rigido e veloce
+              </Collapse>
+              <Collapse
+                title='damping [ 10-30 (default = 10) ]'
+                className='font-body-base-big'
+                name='transition-type-accordion'>
+                damping regola lo smorzamento. Più alto è il valore, meno
+                oscillazione e rimbalzi avrà l'animazione, più fluida risulterà
+              </Collapse>
+              <Collapse
+                title='mass (default = 1)'
+                className='font-body-base-big'
+                name='transition-type-accordion'>
+                mass regola la massa e quindi l'inerzia. Più alto è il valore,
+                più pesante e lento sarà il movimento
               </Collapse>
             </Accordion>
           </div>
