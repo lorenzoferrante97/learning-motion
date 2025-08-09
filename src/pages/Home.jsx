@@ -4,8 +4,20 @@ import { ArrowDownIcon } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
 import Accordion from '../components/dataDisplay/Accordion';
 import Collapse from '../components/dataDisplay/Collapse';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isPropagationVisible, setIsPropagationVisible] = useState(false);
+
+  const parentVariants = {
+    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+    hidden: { opacity: 0 },
+  };
+  const childrenVariants = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 40 },
+  };
+
   return (
     <>
       {/* --- HERO  ------------------------------------------------------ */}
@@ -171,6 +183,94 @@ export default function Home() {
                 alla sua posizione iniziale quando si rilascia la presa.
               </Collapse>
             </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 3 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>Variants</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            Le variants permettono di riutilizzare animazioni predefinite, e di
+            propagarle ai children di un elemento
+          </p>
+          <div className='d-mockup-code bg-base-300 col-span-full'>
+            <pre>
+              <code>{`const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  }`}</code>
+            </pre>
+          </div>
+          <p className='text-base-content/75 col-span-full'>
+            Le passiamo ad un componente motion con il prop "variants", e usiamo
+            i suoi states
+          </p>
+          <div className='d-mockup-code bg-base-300 col-span-full'>
+            <pre>
+              <code>{`<motion.div
+    variants={variants}
+    initial="hidden"
+    animate="visible"
+  />`}</code>
+            </pre>
+          </div>
+
+          <h3 className='font-h3 col-span-full'>Propagation</h3>
+          <p className='text-base-content/75 col-span-full'>
+            Se impostiamo variants per parent e children con gli stessi states,
+            e applichiamo animate solo al parent, le sue variants si
+            propageranno in automatico anche ai children, senza dover
+            reimpostare per ogni singolo children initial e animate
+          </p>
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`const parentVariants = {
+    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+    hidden: { opacity: 0 },
+  }
+  const childrenVariants = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -100 },
+  }`}</code>
+            </pre>
+          </div>
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full gap-2 rounded-lg p-12 md:col-span-1'>
+            <motion.div
+              className='bg-accent font-body-m-big text-accent-content flex cursor-pointer rounded-full px-4 py-2'
+              onClick={() => setIsPropagationVisible(!isPropagationVisible)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}>
+              <span>Show List</span>
+            </motion.div>
+            {isPropagationVisible && (
+              <motion.ul
+                className='flex flex-col gap-2'
+                variants={parentVariants}
+                initial='hidden'
+                animate='visible'>
+                <motion.li
+                  variants={childrenVariants}
+                  className='bg-secondary text-secondary-content font-body-s-normal rounded-sm px-2 py-1'>
+                  List item 1
+                </motion.li>
+                <motion.li
+                  variants={childrenVariants}
+                  className='bg-secondary text-secondary-content font-body-s-normal rounded-sm px-2 py-1'>
+                  List item 2
+                </motion.li>
+                <motion.li
+                  variants={childrenVariants}
+                  className='bg-secondary text-secondary-content font-body-s-normal rounded-sm px-2 py-1'>
+                  List item 3
+                </motion.li>
+              </motion.ul>
+            )}
           </div>
         </div>
       </div>
