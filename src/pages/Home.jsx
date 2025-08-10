@@ -1,7 +1,13 @@
 // start code
 
 import { ArrowDownIcon, CaretRightIcon } from '@phosphor-icons/react';
-import { easeIn, easeInOut, easeOut, motion } from 'motion/react';
+import {
+  easeIn,
+  easeInOut,
+  easeOut,
+  motion,
+  AnimatePresence,
+} from 'motion/react';
 import Accordion from '../components/dataDisplay/Accordion';
 import Collapse from '../components/dataDisplay/Collapse';
 import { useState } from 'react';
@@ -9,6 +15,7 @@ import Carousel from '../components/dataDisplay/Carousel';
 
 export default function Home() {
   const [isPropagationVisible, setIsPropagationVisible] = useState(false);
+  const [isAPVisible, setIsAPVisible] = useState(false);
 
   const parentVariants = {
     visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
@@ -627,10 +634,10 @@ export default function Home() {
           <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
             <pre>
               <code>{`<motion.div
-    initial={{ x: 200 }}
+    initial={{ x: 80 }}
     whileInView={{ x: 0 }}
     transition={{ duration: 3, ease: 'easeOut' }}
-    viewport={{ once: false, amount: 1 }}
+    viewport={{ once: true, amount: 0.3 }}
   />`}</code>
             </pre>
           </div>
@@ -639,10 +646,10 @@ export default function Home() {
           <div className='perfect-center col-span-full rounded-lg p-12 md:col-span-1'>
             <motion.div
               className='bg-accent font-body-s-big size-20 rounded-full'
-              initial={{ x: 200 }}
+              initial={{ x: 80 }}
               whileInView={{ x: 0 }}
               transition={{ duration: 3, ease: 'easeOut' }}
-              viewport={{ once: false, amount: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
             />
           </div>
           {/* - spiegazione ------------ */}
@@ -671,6 +678,114 @@ export default function Home() {
                 amount permette di definire la percentuale di visibilità
                 dell'elemento che deve essere entrata nel viewport prima di
                 poter attivare l'animazione
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 8 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>AnimatePresence</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            Di norma, quando un componente viene smontato, sparisce
+            immediatamente. AnimatePresence permette di animare l'uscita dal DOM
+            di un componente.
+          </p>
+
+          <div className='col-span-full'>
+            <p className='text-base-content/75 col-span-full'>Utile per:</p>
+            <Carousel className='h-fit w-full space-x-2 p-2'>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  Popup e Modali
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  Liste di elementi
+                </span>
+              </div>
+              <div className='d-carousel-item overflow-hidden'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  Navigazione tra pagine
+                </span>
+              </div>
+            </Carousel>
+          </div>
+
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`
+    const [isVisible, setIsVisible] = useState(true);
+
+    <button onClick={() => setIsVisible(!isVisible)}>
+      Toggle Box
+    </button>
+
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          key="box"
+          initial={{ opacity: 0, y: -80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 80 }}
+          transition={{ duration: 3 }}
+        />
+      )}
+    </AnimatePresence>
+              `}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-4 rounded-lg p-12 md:col-span-1'>
+            <button
+              onClick={() => setIsAPVisible(!isAPVisible)}
+              className='bg-accent font-body-base-big text-accent-content perfect-center rounded-full px-4 py-2'>
+              Toggle Box
+            </button>
+            <AnimatePresence>
+              {isAPVisible && (
+                <motion.div
+                  className='bg-secondary size-20 rounded-md'
+                  key='box'
+                  initial={{ opacity: 0, x: -80 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 80 }}
+                  transition={{ duration: 3 }}
+                />
+              )}
+            </AnimatePresence>
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='isVisible'
+                className='font-body-base-big'
+                name='animatepresence-accordion'
+                defaultChecked>
+                AnimatePresence necessita di elementi condizionali che
+                montano/smontano i componenti, come uno state isVisible
+              </Collapse>
+              <Collapse
+                title='exit'
+                className='font-body-base-big'
+                name='animatepresence-accordion'>
+                il prop exit definisce l'animazione di smontaggio del componente
+              </Collapse>
+              <Collapse
+                title='key'
+                className='font-body-base-big'
+                name='animatepresence-accordion'>
+                key definisce l'istanza del componente. se la key non cambia,
+                Motion identifica quel componente come sempre lo stesso, quindi
+                non fa ripartire l'animazione di montaggio/smontaggio
               </Collapse>
             </Accordion>
           </div>
