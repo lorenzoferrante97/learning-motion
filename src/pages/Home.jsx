@@ -85,7 +85,7 @@ export default function Home() {
           {/* - esempio visivo ---------- */}
           <div className='perfect-center col-span-full rounded-lg p-12 md:col-span-1'>
             <motion.div
-              className='bg-primary-content size-20 rounded-md'
+              className='bg-accent size-20 rounded-md'
               initial={{ x: -80 }}
               animate={{ x: 80 }}
               transition={{ duration: 3 }}
@@ -142,7 +142,7 @@ export default function Home() {
           {/* - esempio visivo ---------- */}
           <div className='perfect-center col-span-full rounded-lg p-12 md:col-span-1'>
             <motion.div
-              className='bg-primary text-primary-content flex gap-2 rounded-md p-4'
+              className='bg-accent font-body-s-big text-accent-content flex gap-2 rounded-md p-4'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               drag
@@ -312,17 +312,19 @@ export default function Home() {
           <div className='col-span-full'>
             <Carousel className='h-fit w-full space-x-2 p-2 md:w-[320px]'>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
                   easeIn
                 </span>
               </div>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  {' '}
                   easeOut
                 </span>
               </div>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  {' '}
                   easeInOut
                 </span>
               </div>
@@ -417,17 +419,19 @@ export default function Home() {
           <div className='col-span-full'>
             <Carousel className='h-fit w-full space-x-2 p-2 md:w-[320px]'>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
                   tween (default)
                 </span>
               </div>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  {' '}
                   spring
                 </span>
               </div>
               <div className='d-carousel-item overflow-hidden'>
-                <span className='bg-secondary font-body-s-normal text-secondary-content self-center rounded-full px-4 py-1'>
+                <span className='bg-accent font-body-s-normal text-accent-content self-center rounded-full px-4 py-1'>
+                  {' '}
                   inertia
                 </span>
               </div>
@@ -445,7 +449,6 @@ export default function Home() {
                 <code>{`<motion.div
     animate={{ x: 80 }}
     transition={{
-      duration: 5,
       type: 'spring',
       stiffness: 120,
       damping: 20,
@@ -457,7 +460,7 @@ export default function Home() {
             {/* - esempio visivo ---------- */}
             <div className='col-span-full flex flex-col justify-center gap-2 rounded-lg p-12 md:col-span-1'>
               <motion.div
-                className='bg-primary-content size-10 rounded-full'
+                className='bg-accent size-10 rounded-full'
                 animate={{ x: 200 }}
                 transition={{
                   type: 'spring',
@@ -493,6 +496,181 @@ export default function Home() {
                 name='transition-type-accordion'>
                 mass regola la massa e quindi l'inerzia. Più alto è il valore,
                 più pesante e lento sarà il movimento
+              </Collapse>
+            </Accordion>
+          </div>
+          {/* - inertia ----------- */}
+          <div className='col-span-full grid grid-cols-2 gap-4'>
+            <h3 className='font-h3 col-span-full'>Inertia</h3>
+            <p className='text-base-content/75 col-span-full'>
+              Simula l'inerzia di un oggetto con massa. Viene utilizzato di
+              default dall'animazione Drag, per simulare questo effetto.
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* --- SEZIONE 6 ------------------------------------------------------ */}
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        {/* prettier-ignore */}
+        <h2 className='font-h2 col-span-full'>
+          Transition <span className='bg-primary text-primary-content rounded-full aspect-square size-fit perfect-center inline-flex p-1 relative top-[-4px]'><CaretRightIcon className='inline' weight='bold' size={12} /></span> repeat
+        </h2>
+        {/* prettier-ignore */}
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            repeat permette di definire quante volte si ripeterà l'animazione.
+            Inoltre permette di definire il tipo di ripetizione e il delay.
+          </p>
+
+          {/* - spring ----------- */}
+          <div className='col-span-full grid grid-cols-2 gap-4'>
+            <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+              <pre>
+                <code>{`<motion.div
+    animate={{ x: 80 }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "loop"
+      }}
+  />`}</code>
+              </pre>
+            </div>
+            {/* - esempio visivo ---------- */}
+            <div className='perfect-center col-span-full flex-col gap-2 rounded-lg p-12 md:col-span-1'>
+              <div className='grid w-full grid-cols-2'>
+                <span className='text-primary-content w-fit self-center'>
+                  repeatType: "loop"
+                </span>
+                <motion.div
+                  className='bg-primary-content size-5 rounded-full'
+                  animate={{ x: 80 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                  }}
+                />
+              </div>
+              <div className='grid w-full grid-cols-2'>
+                <span className='text-secondary-content w-fit self-center'>
+                  repeatType: "reverse"
+                </span>
+                <motion.div
+                  className='bg-secondary-content size-5 rounded-full'
+                  animate={{ x: 80 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                />
+              </div>
+              <div className='grid w-full grid-cols-2'>
+                <span className='text-accent-content w-fit self-center'>
+                  repeatType: "mirror"
+                </span>
+                <motion.div
+                  className='bg-accent-content size-5 rounded-full'
+                  animate={{ x: 80 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='loop'
+                className='font-body-base-big'
+                name='repeat-accordion'
+                defaultChecked>
+                loop fa ripartire l'animazione dall'inizio
+              </Collapse>
+              <Collapse
+                title='reverse'
+                className='font-body-base-big'
+                name='repeat-accordion'>
+                reverse alterna la direzione dell'animazione, facendo "tornare
+                indietro" allo stato iniziale l'elemento, con uno stacco fluido.
+              </Collapse>
+              <Collapse
+                title='mirror'
+                className='font-body-base-big'
+                name='repeat-accordion'>
+                mirror è come reverse, ma mantiene il tempo costante in entrambe
+                le direzioni, quindi con uno stacco più netto
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 7 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>Scroll animations</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            Le scroll animations permettono di animare elementi quando entrano
+            nel viewport durante lo scroll. "whileInView" sostituisce animate.
+          </p>
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`<motion.div
+    initial={{ x: 200 }}
+    whileInView={{ x: 0 }}
+    transition={{ duration: 3, ease: 'easeOut' }}
+    viewport={{ once: false, amount: 1 }}
+  />`}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full rounded-lg p-12 md:col-span-1'>
+            <motion.div
+              className='bg-accent font-body-s-big size-20 rounded-full'
+              initial={{ x: 200 }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 3, ease: 'easeOut' }}
+              viewport={{ once: false, amount: 1 }}
+            />
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                title='viewport'
+                className='font-body-base-big'
+                name='scroll-accordion'
+                defaultChecked>
+                prop che permette di controllare l'animazione di entrata nel
+                viewport tramite due parametri: "once" e "amount"
+              </Collapse>
+              <Collapse
+                title='--- once (true | false)'
+                className='font-body-base-big'
+                name='scroll-accordion'>
+                once permette di definire se l'animazione avviene solo la prima
+                volta oppure ogni volta che l'elemento entra nel viewport. True
+                = avviene solo la prima volta
+              </Collapse>
+              <Collapse
+                title='--- amount (da 0 a 1)'
+                className='font-body-base-big'
+                name='scroll-accordion'>
+                amount permette di definire la percentuale di visibilità
+                dell'elemento che deve essere entrata nel viewport prima di
+                poter attivare l'animazione
               </Collapse>
             </Accordion>
           </div>
