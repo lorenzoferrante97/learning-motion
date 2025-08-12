@@ -1,7 +1,7 @@
 // start code
 
 import { ArrowDownIcon, CaretRightIcon } from "@phosphor-icons/react"
-import { AnimatePresence, easeIn, easeInOut, easeOut, motion } from "motion/react"
+import { AnimatePresence, easeIn, easeInOut, easeOut, motion, useScroll } from "motion/react"
 import { useState } from "react"
 import Accordion from "../components/dataDisplay/Accordion"
 import Carousel from "../components/dataDisplay/Carousel"
@@ -10,6 +10,9 @@ import Collapse from "../components/dataDisplay/Collapse"
 export default function Home() {
   const [isPropagationVisible, setIsPropagationVisible] = useState(false)
   const [isAPVisible, setIsAPVisible] = useState(false)
+  const [isLayoutOpen, setIsLayoutOpen] = useState(false)
+  const [isLayoutIdVisible, setIsLayoutIdVisible] = useState(false)
+  const { scrollYProgress } = useScroll()
 
   const parentVariants = {
     visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
@@ -754,6 +757,175 @@ export default function Home() {
                 key definisce l'istanza del componente. se la key non cambia, Motion identifica quel
                 componente come sempre lo stesso, quindi non fa ripartire l'animazione di
                 montaggio/smontaggio
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 9 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>Layout animations</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            Il prop layout consente di animare automaticamente un elemento in base al cambiamento
+            dei suoi valori di posizione/dimensione, senza dover calcolarne i valori manualmente.
+          </p>
+
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`
+    const [isLayoutOpen, setIsLayoutOpen] = useState(false);
+
+      <motion.div
+        layout
+        onClick={() => setIsLayoutOpen(!isLayoutOpen)}
+        className='isLayoutOpen ? "h-52" : "h-20"'
+      />
+              `}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-4 rounded-lg p-12 md:col-span-1'>
+            <motion.div
+              className={`bg-accent cursor-pointer h-20 ${isLayoutOpen ? "w-52 rounded-lg" : "w-20 rounded-md"}`}
+              layout
+              onClick={() => setIsLayoutOpen(!isLayoutOpen)}
+            />
+          </div>
+          {/* - layout id ----------- */}
+          <div className='col-span-full grid grid-cols-2 gap-4'>
+            <h3 className='font-h3 col-span-full'>LayoutId</h3>
+            <p className='text-base-content/75 col-span-full'>
+              LayoutId permette di creare una transizione tra due componenti diversi.
+            </p>
+          </div>
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`
+    {isLayoutIdVisible ? (
+      <motion.div
+        className='perfect-center p-10 bg-accent text-accent-content rounded-lg'
+        key='box-open'
+        layoutId='boxes'>
+        Box 2
+      </motion.div>
+    ) : (
+      <motion.div
+        className='p-4 bg-primary text-primary-content rounded-md perfect-center'
+        key='box-closed'
+        layoutId='boxes'>
+        Box 1
+      </motion.div>
+    )}
+              `}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full gap-4 justify-between rounded-lg p-12 md:col-span-1'>
+            <button
+              className='bg-accent text-accent-content rounded-full px-4 py-1'
+              onClick={() => setIsLayoutIdVisible(!isLayoutIdVisible)}
+              type='button'>
+              Toggle layoutId
+            </button>
+            <AnimatePresence>
+              {isLayoutIdVisible ? (
+                <motion.div
+                  className='perfect-center p-10 bg-accent text-accent-content rounded-lg'
+                  key='box-open'
+                  layoutId='boxes'>
+                  Box 2
+                </motion.div>
+              ) : (
+                <motion.div
+                  className='p-4 bg-primary text-primary-content rounded-md perfect-center'
+                  key='box-closed'
+                  layoutId='boxes'>
+                  Box 1
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                className='font-body-base-big'
+                defaultChecked
+                name='layout-accordion'
+                title='layout'>
+                basta inserire questo prop e inserire nel componente una trasformazione condizionale
+                (condition ? 'x' : 'y').<br></br>Esempi di utilizzo: apertura/chiusura di un
+                accordion, card che si espande/riduce, elementi resposnsive che si adattano alla
+                schermata...
+              </Collapse>
+              <Collapse className='font-body-base-big' name='layout-accordion' title='layoutId'>
+                inserire lo stesso prop layoutId sui due elementi tra cui si vuole creare una
+                transizione.<br></br>Esempi di utilizzo: passaggio da card a modale, passaggio da
+                thumbnail a image fullscreen, passaggio tra router pages, cambio di tab nei tabs...
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 10 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>useScroll</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            useScroll fornisce un motion value che definisce la posizione dello scroll nella pagina.
+            Può essere utilizzato per indicatori di scroll, effetti parallax...
+          </p>
+
+          <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`
+    const { scrollYProgress } = useScroll()
+
+    <motion.div
+      className='h-5 bg-accent fixed top-0 left-0 right-0 z-50'
+      style={{ scaleX: scrollYProgress, originX: 0 }}
+    />
+              `}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-4 rounded-lg p-12 md:col-span-1'>
+            <p>Guarda lo scroll indicator giallo in alto che scorre con lo scroll 😉</p>
+            <motion.div
+              className='h-5 bg-accent fixed top-0 left-0 right-0 z-50'
+              style={{ scaleX: scrollYProgress, originX: 0 }}
+            />
+          </div>
+
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                className='font-body-base-big'
+                defaultChecked
+                name='usescroll-accordion'
+                title='scrollYProgress / scrollXProgress'>
+                ritorna un valore percentuale dello scorrimento della pagina, da 0 (inizio pagina) a
+                1 (fine pagina). Es: a metà pagina il valore sarà 0.5.
+              </Collapse>
+              <Collapse
+                className='font-body-base-big'
+                name='usescroll-accordion'
+                title='scrollY / scrollX'>
+                ritorna il valore assoluto dello scorrimento della pagina, in pixel. Es: su una
+                pagina con height di 1000px, a metà pagina il valore sarà 500px.
               </Collapse>
             </Accordion>
           </div>
