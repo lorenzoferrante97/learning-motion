@@ -1,7 +1,16 @@
 // start code
 
 import { ArrowDownIcon, CaretRightIcon } from "@phosphor-icons/react"
-import { AnimatePresence, easeIn, easeInOut, easeOut, motion, useScroll } from "motion/react"
+import {
+  AnimatePresence,
+  easeIn,
+  easeInOut,
+  easeOut,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "motion/react"
 import { useState } from "react"
 import Accordion from "../components/dataDisplay/Accordion"
 import Carousel from "../components/dataDisplay/Carousel"
@@ -13,6 +22,29 @@ export default function Home() {
   const [isLayoutOpen, setIsLayoutOpen] = useState(false)
   const [isLayoutIdVisible, setIsLayoutIdVisible] = useState(false)
   const { scrollYProgress } = useScroll()
+
+  // map x position
+  const xPosition = useTransform(scrollYProgress, [0, 1], ["1vw", "94vw"])
+  // map bg color
+  const dynamicBgColor = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["oklch(94% 0.129 101.54)", "oklch(47% 0.114 61.907)"]
+  )
+  const dynamicTextColor = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["oklch(47% 0.114 61.907)", "oklch(94% 0.129 101.54)"]
+  )
+
+  // get scroll value to show
+  const [scrollYValue, setScrollYValue] = useState(0)
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // console.log("latest: ", latest)
+    const value = parseInt(latest * 100)
+    setScrollYValue(value)
+  })
 
   const parentVariants = {
     visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
@@ -907,6 +939,16 @@ export default function Home() {
               className='h-5 bg-accent fixed top-0 left-0 right-0 z-50'
               style={{ scaleX: scrollYProgress, originX: 0 }}
             />
+            <motion.div
+              className='w-[5vw] rounded-full perfect-center aspect-square fixed top-[24px] left-0 z-50'
+              style={{
+                translateX: xPosition,
+                originX: 0,
+                backgroundColor: dynamicBgColor,
+                color: dynamicTextColor,
+              }}>
+              <span className='font-body-l-big'>{scrollYValue}</span>
+            </motion.div>
           </div>
 
           {/* - spiegazione ------------ */}
@@ -978,6 +1020,65 @@ export default function Home() {
                 inizia quando l'inizio del target incontra il bordo inferiore del viewport, quindi
                 appena inizia a essere visibile, e termina quando la fine del target incontra il
                 bordo superiore del viewport, quindi quando non è più visibile.
+              </Collapse>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      {/* --- SEZIONE 11 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>useTransform</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            useTransform serve a mappare un motion value in un nuovo intervallo di valori.
+          </p>
+
+          <div className='d-mockup-code h-fit bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);`}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-4 rounded-lg p-12 md:col-span-1'>
+            <p>
+              Guarda il numero che scorre insieme allo scroll indicator. useTransform ha permesso di
+              animare il colore e il translate del cerchio con lo scroll.<br></br> Per il numero che
+              cambia in tempo reale si è utilizzato{" "}
+              <span className='font-body-base-big text-accent'>useMotionValueEvent</span>, che
+              permette di controllare un event di un motion value, in questo caso il "change",
+              ovvero il cambiamento dello scrollYProgress
+            </p>
+          </div>
+
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                className='font-body-base-big'
+                defaultChecked
+                name='usetransform-accordion'
+                title='scrollYProgress'>
+                il motion value targetizzato
+              </Collapse>
+              <Collapse className='font-body-base-big' name='usetransform-accordion' title='[0, 1]'>
+                range di valori in input che il target può assumere
+              </Collapse>
+              <Collapse className='font-body-base-big' name='usetransform-accordion' title='[0, 1]'>
+                il nuovo range di valori in output che verrà assunto da opacity. Es: a inizio pagina
+                (0) l'opacity sarà 0, con lo scroll aumenta l'opacità, a fine pagina (1) l'opacità
+                sarà 1
+              </Collapse>
+              <Collapse
+                className='font-body-base-big'
+                name='usetransform-accordion'
+                title="casi d'uso">
+                fade in/out allo scroll, effetti parallax, elementi che cambiano in base a
+                posizione...
               </Collapse>
             </Accordion>
           </div>
