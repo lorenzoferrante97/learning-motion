@@ -9,6 +9,7 @@ import {
   motion,
   useMotionValueEvent,
   useScroll,
+  useSpring,
   useTransform,
 } from "motion/react"
 import { useState } from "react"
@@ -22,6 +23,12 @@ export default function Home() {
   const [isLayoutOpen, setIsLayoutOpen] = useState(false)
   const [isLayoutIdVisible, setIsLayoutIdVisible] = useState(false)
   const { scrollYProgress } = useScroll()
+
+  const smoothYProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 25,
+    mass: 0.2,
+  })
 
   // map x position
   const xPosition = useTransform(scrollYProgress, [0, 1], ["1vw", "94vw"])
@@ -937,7 +944,7 @@ export default function Home() {
             <p>Guarda lo scroll indicator giallo in alto che scorre con lo scroll 😉</p>
             <motion.div
               className='h-5 bg-accent fixed top-0 left-0 right-0 z-50'
-              style={{ scaleX: scrollYProgress, originX: 0 }}
+              style={{ scaleX: smoothYProgress, originX: 0 }}
             />
             <motion.div
               className='w-[5vw] rounded-full perfect-center aspect-square fixed top-[24px] left-0 z-50'
@@ -1081,6 +1088,36 @@ export default function Home() {
                 posizione...
               </Collapse>
             </Accordion>
+          </div>
+        </div>
+      </div>
+      {/* --- SEZIONE 12 ------------------------------------------------------ */}
+
+      <div className='row-grid gap-8 py-12 xl:mx-auto xl:w-[68%]'>
+        <h2 className='font-h2 col-span-full'>useSpring</h2>
+
+        {/* - code example ------------ */}
+        <div className='col-span-full grid grid-cols-2 gap-4'>
+          <p className='text-base-content/75 col-span-full'>
+            useSpring permette di rendere le animazioni più fluide e naturali.
+          </p>
+
+          <div className='d-mockup-code h-fit bg-base-300 col-span-full md:col-span-1'>
+            <pre>
+              <code>{`const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100, // quanto la molla è rigida
+    damping: 20,    // quanto resiste il movimento
+    mass: 0.5,      // quanto è "pesante" l'oggetto
+  });`}</code>
+            </pre>
+          </div>
+
+          {/* - esempio visivo ---------- */}
+          <div className='perfect-center col-span-full flex-col gap-4 rounded-lg p-12 md:col-span-1'>
+            <p>
+              aggiungendo useSpring allo scroll indicator, abbiamo reso la sua animazione più
+              naturale e meno lineare.
+            </p>
           </div>
         </div>
       </div>
