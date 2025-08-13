@@ -929,6 +929,58 @@ export default function Home() {
               </Collapse>
             </Accordion>
           </div>
+          {/* - parametri ----------- */}
+          <div className='col-span-full grid grid-cols-2 gap-4'>
+            <h3 className='font-h3 col-span-full'>Parametri</h3>
+            <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+              <pre>
+                <code>{`const { scrollYProgress } = useScroll({ container: containerRef });`}</code>
+              </pre>
+            </div>
+            <div className='d-mockup-code bg-base-300 col-span-full md:col-span-1'>
+              <pre>
+                <code>{`const { scrollYProgress } = useScroll({ target: targetRef });`}</code>
+              </pre>
+            </div>
+            <div className='d-mockup-code bg-base-300 col-span-full'>
+              <pre>
+                <code>{`const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"] // start / center / end / 0-1 (%)
+});`}</code>
+              </pre>
+            </div>
+          </div>
+          {/* - spiegazione ------------ */}
+          <div className='col-span-full'>
+            <Accordion className=''>
+              <Collapse
+                className='font-body-base-big'
+                defaultChecked
+                name='usescroll-options-accordion'
+                title='container'>
+                permette di controllare lo scroll di un elemento specifico. Es: scroll di un
+                carousel, scroll di un div con overflow: auto...
+              </Collapse>
+              <Collapse
+                className='font-body-base-big'
+                name='usescroll-options-accordion'
+                title='target'>
+                permette di controllare la posizione di un elemento specifico nel container o
+                viewport dello scroll.
+              </Collapse>
+              <Collapse
+                className='font-body-base-big'
+                name='usescroll-options-accordion'
+                title='offset'>
+                permette di controllare quando l'animazione inizia/termina in base alla parte
+                visibile del target e del container. Es: "start end", "end start" = l'animazione
+                inizia quando l'inizio del target incontra il bordo inferiore del viewport, quindi
+                appena inizia a essere visibile, e termina quando la fine del target incontra il
+                bordo superiore del viewport, quindi quando non è più visibile.
+              </Collapse>
+            </Accordion>
+          </div>
         </div>
       </div>
     </>
