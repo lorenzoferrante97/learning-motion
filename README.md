@@ -1,12 +1,23 @@
-# React + Vite
+# Learning Motion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Progetto di studio dedicato a **Framer Motion**, realizzato per esplorare e testare tutte le principali funzionalità della libreria di animazioni per React.
 
-Currently, two official plugins are available:
+## Obiettivi
+Imparare in modo pratico, creando esempi chiari e riutilizzabili per:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Animazioni di base** e interazioni (hover, click, drag)
+- **Variants** per gestire stati multipli
+- **Transitions** con easing, delay e ripetizioni
+- **Scroll animations** con `useScroll` e `useTransform`
+- **AnimatePresence** per l’animazione del montaggio/smontaggio di componenti
+- **Layout animations** e `layoutId` per transizioni fluide
+- **Motion values** (`useMotionValue`, `useSpring`, `useMotionValueEvent`)
+- **useAnimate** per animazioni imperative e controlli (`play`, `stop`, ecc.)
+- **useInView** per animazioni basate sulla visibilità
+- **Gestures** avanzate e drag constraints
 
-## Expanding the ESLint configuration
+## Struttura del progetto
+Ogni lezione è tradotta in un esempio pratico nel codice, così da poter essere riutilizzata come reference rapida in progetti reali.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
